@@ -1,14 +1,10 @@
 #include <iostream>
-#include "SDL.h"
+#include "mSDL.h"
 
 int main(int ac, char **av)
 {
-
-    if (SDL_Init(SDL_INIT_VIDEO) == -1)
-    {
-        fprintf(stderr, "->msdl init error\n");
-        return (0);
-    }
+    mSDL *msdl = new mSDL("toto", 200, 200, 32);
+    msdl->createBackground();
 
     std::cout << "test" << std::endl;
 
