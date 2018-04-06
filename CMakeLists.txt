@@ -15,7 +15,7 @@ set (
 )
 
 set (
-    SOURCES_DIR_MSDL_1_2 ${CMAKE_SOURCE_DIR}/graphic/SDL-1.2
+    SOURCES_DIR_MSDL_1_2 ${CMAKE_SOURCE_DIR}/graphics/SDL-1.2
 )
 
 set (
@@ -23,7 +23,7 @@ set (
 )
 
 set (
-    INCLUDES_DIR_MSDL_1_2 ${CMAKE_SOURCE_DIR}/graphic/SDL-1.2
+    INCLUDES_DIR_MSDL_1_2 ${CMAKE_SOURCE_DIR}/graphics/SDL-1.2
 )
 
 set (
@@ -51,9 +51,11 @@ add_executable (
     ${SOURCES}
     ${SOURCES_MSDL_1_2}
 )
-
+if (UNIX)
 target_link_libraries(
     Arcade
     ${CMAKE_SOURCE_DIR}/libraries/unix/SDL/libs/libSDL-1.2.so
 )
-
+endif (UNIX)
+if (WIN32)
+endif (WIN32)

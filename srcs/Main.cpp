@@ -4,9 +4,9 @@
 int main(int ac, char **av)
 {
     mSDL *msdl = new mSDL("toto", 200, 200, 32);
-    msdl->createBackground();
-
-    std::cout << "test" << std::endl;
-
+    while (msdl->event())
+    {
+        msdl->createBackground();
+    }
     return 0;
 }
