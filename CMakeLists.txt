@@ -6,56 +6,87 @@ project (
     Arcade
 )
 
+if (UNIX)
 set (
     CMAKE_CXX_FLAGS "-Wall -Wextra -g3 -O0"
 )
+endif (UNIX)
 
 set (
     SOURCES_DIR ${CMAKE_SOURCE_DIR}/srcs
 )
 
 set (
-    SOURCES_DIR_MSDL_1_2 ${CMAKE_SOURCE_DIR}/graphics/SDL-1.2
+    HEADERS_DIR ${CMAKE_SOURCE_DIR}/headers
 )
 
 set (
-    INCLUDES_DIR ${CMAKE_SOURCE_DIR}/includes
+    GRAPHIC_DIR ${CMAKE_SOURCE_DIR}/graphic
 )
 
 set (
-    INCLUDES_DIR_MSDL_1_2 ${CMAKE_SOURCE_DIR}/graphics/SDL-1.2
+    AUDIO_DIR ${CMAKE_SOURCE_DIR}/audio
 )
 
 set (
-    INCLUDE_DIR_SDL_HEADERS_DIR ${CMAKE_SOURCE_DIR}/libraries/unix/SDL/headers
+    GRAPHIC_MSFML_DIR ${GRAPHIC_DIR}/MSFML
+)
+
+set (
+    AUDIO_MSFML_DIR ${AUDIO_DIR}/MSFML
 )
 
 set (
     SOURCES
     ${SOURCES_DIR}/Main.cpp
+    ${SOURCES_DIR}/Engine.cpp
+    ${GRAPHIC_MSFML_DIR}/AnimatedSprite.cpp
+    ${GRAPHIC_MSFML_DIR}/Animation.cpp
+    ${GRAPHIC_MSFML_DIR}/TextureManager.cpp
+    ${GRAPHIC_MSFML_DIR}/Timer.cpp
+    ${GRAPHIC_MSFML_DIR}/mSFML.cpp
+    ${AUDIO_MSFML_DIR}/Audio.cpp
 )
-
 set (
-    SOURCES_MSDL_1_2
-    ${SOURCES_DIR_MSDL_1_2}/mSDL.cpp
+    HEADERS
+    ${HEADERS_DIR}/Engine.h
+    ${GRAPHIC_DIR}/IGui.hpp
+    ${GRAPHIC_MSFML_DIR}/AnimatedSprite.hpp
+    ${GRAPHIC_MSFML_DIR}/Animation.hpp
+    ${GRAPHIC_MSFML_DIR}/TextureManager.hpp
+    ${GRAPHIC_MSFML_DIR}/Timer.hpp
+    ${GRAPHIC_MSFML_DIR}/mSFML.hpp
+    ${AUDIO_DIR}/IAudio.hpp
+    ${AUDIO_MSFML_DIR}/Audio.hpp
 )
 
 include_directories(
-  ${INCLUDES_DIR}
-  ${INCLUDES_DIR_MSDL_1_2}
-  ${INCLUDE_DIR_SDL_HEADERS_DIR}
+  ${HEADERS_DIR}
+  ${GRAPHIC_DIR}
+  ${AUDIO_DIR}
+  ${GRAPHIC_MSFML_DIR}
+  ${AUDIO_MSFML_DIR}
 )
 
 add_executable (
     Arcade
     ${SOURCES}
-    ${SOURCES_MSDL_1_2}
+    ${HEADERS}
 )
+
 if (UNIX)
 target_link_libraries(
     Arcade
-    ${CMAKE_SOURCE_DIR}/libraries/unix/SDL/libs/libSDL-1.2.so
+    ${CMAKE_SOURCE_DIR}/libraries/unix/SDL/libSDL-1.2.so
 )
 endif (UNIX)
 if (WIN32)
+target_link_libraries(
+    Arcade
+    ${CMAKE_SOURCE_DIR}/libraries/windows/SFML/sfml-audio-d.lib
+    ${CMAKE_SOURCE_DIR}/libraries/windows/SFML/sfml-graphics-d.lib
+    ${CMAKE_SOURCE_DIR}/libraries/windows/SFML/sfml-network-d.lib
+    ${CMAKE_SOURCE_DIR}/libraries/windows/SFML/sfml-system-d.lib
+    ${CMAKE_SOURCE_DIR}/libraries/windows/SFML/sfml-window-d.lib
+)
 endif (WIN32)
