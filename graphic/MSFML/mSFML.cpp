@@ -96,13 +96,7 @@ void			mSFML::handleEvents(void)
 			}
 			break;
 		case sf::Event::KeyReleased:
-			switch (event.key.code)
-			{
-			default:
-				this->_current_key = NONE;
-				break;
-			}
-			break;
+			this->_current_key = NONE;
 		default:
 			break;
 		}
@@ -127,12 +121,12 @@ unsigned int		mSFML::getMouseY(void) const
 	return (this->_mouse.getPosition(this->_window).y);
 }
 
-bool			mSFML::buttonLeftIsClicked(void) const
+bool				mSFML::buttonLeftIsClicked(void) const
 {
 	return (this->_mouse.isButtonPressed(sf::Mouse::Button::Left));
 }
 
-bool			mSFML::buttonRightIsClicked(void) const
+bool				mSFML::buttonRightIsClicked(void) const
 {
 	return (this->_mouse.isButtonPressed(sf::Mouse::Button::Right));
 }
@@ -140,12 +134,12 @@ bool			mSFML::buttonRightIsClicked(void) const
 /*
 ** Font
 */
-void			mSFML::loadFont(const std::string &path)
+void				mSFML::loadFont(const std::string &path)
 {
 	this->_font.loadFromFile(path);
 }
 
-void			mSFML::writeAt(const std::string &msg,
+void				mSFML::writeAt(const std::string &msg,
 	const float x, const float y,
 	const unsigned int hexaColorCode,
 	const float scale)
@@ -165,7 +159,7 @@ void			mSFML::writeAt(const std::string &msg,
 ** Animated Sprite
 */
 
-Animation		mSFML::loadAnimation(const std::string &path)
+Animation			mSFML::loadAnimation(const std::string &path)
 {
 	Animation		animation;
 	const sf::Texture	*texture;
@@ -176,18 +170,18 @@ Animation		mSFML::loadAnimation(const std::string &path)
 	return (animation);
 }
 
-void			mSFML::addFrames(Animation &animation, const unsigned int nbFrame, const unsigned int x1, const unsigned int x2, const unsigned int x3, const unsigned int x4)
+void				mSFML::addFrames(Animation &animation, const unsigned int nbFrame, const unsigned int x1, const unsigned int x2, const unsigned int x3, const unsigned int x4)
 {
 	for (unsigned int i = 0; i < nbFrame; i++)
 		animation.addFrame(i * x1, x2, x3, x4);
 }
 
-void			mSFML::addFrame(Animation &animation, const unsigned int x1, const unsigned int x2, const unsigned int x3, const unsigned int x4)
+void				mSFML::addFrame(Animation &animation, const unsigned int x1, const unsigned int x2, const unsigned int x3, const unsigned int x4)
 {
 	animation.addFrame(x1, x2, x3, x4);
 }
 
-void			mSFML::updateAnimatedSprite(Animation &currentAnimation, AnimatedSprite &animatedSprite, const float x, const float y)
+void				mSFML::updateAnimatedSprite(Animation &currentAnimation, AnimatedSprite &animatedSprite, const float x, const float y)
 {
 	animatedSprite.play(currentAnimation);
 	animatedSprite.setPosition(x, y);
@@ -195,7 +189,7 @@ void			mSFML::updateAnimatedSprite(Animation &currentAnimation, AnimatedSprite &
 	this->_window.draw(animatedSprite);
 }
 
-void			mSFML::updateAnimatedSprite(AnimatedSprite &animatedSprite, const float x, const float y)
+void				mSFML::updateAnimatedSprite(AnimatedSprite &animatedSprite, const float x, const float y)
 {
 	animatedSprite.play(*animatedSprite.getAnimation());
 	animatedSprite.setPosition(x, y);
@@ -203,7 +197,7 @@ void			mSFML::updateAnimatedSprite(AnimatedSprite &animatedSprite, const float x
 	this->_window.draw(animatedSprite);
 }
 
-void			mSFML::moveAnimatedSprite(AnimatedSprite &animatedSprite, const float x, const float y)
+void				mSFML::moveAnimatedSprite(AnimatedSprite &animatedSprite, const float x, const float y)
 {
 	animatedSprite.move(x * _frameTime.asSeconds(), y * _frameTime.asSeconds());
 }
@@ -211,7 +205,7 @@ void			mSFML::moveAnimatedSprite(AnimatedSprite &animatedSprite, const float x, 
 /*
 ** textures
 */
-void			mSFML::setTextureAt(const std::string &path, const float x, const float y, const float scale)
+void				mSFML::setTextureAt(const std::string &path, const float x, const float y, const float scale)
 {
 	sf::Sprite		sprite;
 	const sf::Texture	*texture;
@@ -224,7 +218,7 @@ void			mSFML::setTextureAt(const std::string &path, const float x, const float y
 	this->_window.draw(sprite);
 }
 
-void			mSFML::setTextureRecAt(const std::string &path, const float x, const float y, const float h1, const float w1, const float h2, const float w2, const float scale)
+void				mSFML::setTextureRecAt(const std::string &path, const float x, const float y, const float h1, const float w1, const float h2, const float w2, const float scale)
 {
 	sf::Sprite		sprite;
 	const sf::Texture	*texture;
@@ -241,7 +235,7 @@ void			mSFML::setTextureRecAt(const std::string &path, const float x, const floa
 /*
 ** Fill Rectangle
 */
-void			mSFML::fillRec(const unsigned int x, const unsigned int y, const unsigned int i, const unsigned int j, const unsigned int hexaColorCode, const unsigned int alpha)
+void				mSFML::fillRec(const unsigned int x, const unsigned int y, const unsigned int i, const unsigned int j, const unsigned int hexaColorCode, const unsigned int alpha)
 {
 	std::vector<unsigned int> rgb = hexaToRgb(hexaColorCode);
 	sf::RectangleShape rectangle;
@@ -252,7 +246,7 @@ void			mSFML::fillRec(const unsigned int x, const unsigned int y, const unsigned
 	this->_window.draw(rectangle);
 }
 
-void			mSFML::fillCircle(const unsigned int x, const unsigned int y, const unsigned int i, const unsigned int j, const unsigned int hexaColorCode)
+void				mSFML::fillCircle(const unsigned int x, const unsigned int y, const unsigned int i, const unsigned int j, const unsigned int hexaColorCode)
 {
 	std::vector<unsigned int> rgb = hexaToRgb(hexaColorCode);
 	sf::CircleShape circle;

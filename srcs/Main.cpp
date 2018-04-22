@@ -3,5 +3,12 @@
 
 int main(int ac, char **av)
 {
-   return 0;
+	IGui *gui = new mSFML();
+	while (gui->isAlive())
+	{
+		gui->clear();
+		gui->handleEvents();
+		gui->display();
+	}
+	return 0;
 }
