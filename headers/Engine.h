@@ -1,13 +1,17 @@
-#ifndef __M_ENGINE_H__
-#define __M_ENGINE_H__
+#ifndef			__M_ENGINE_H__
+#define			__M_ENGINE_H__
 
-class Engine
+# include		"mSFML.hpp"
+
+class			Engine
 {
   public:
-    explicit Engine();
+    explicit	Engine();
     ~Engine();
+	void		start();
 
   private:
+	  IGui		*_gui;
 };
 
-#endif /* !__M_ENGINE_H__ */
+#endif			/* !__M_ENGINE_H__ */

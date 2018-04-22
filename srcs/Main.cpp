@@ -1,15 +1,8 @@
-#include <iostream>
-#include "mSFML.hpp"
+#include "Engine.h"
 
 int main(int ac, char **av)
 {
-	IGui *gui = new mSFML();
-	while (gui->isAlive())
-	{
-		gui->clear();
-		gui->handleEvents();
-		gui->update();
-		gui->display();
-	}
+	Engine *e = new Engine();
+	e->start();
 	return 0;
 }
