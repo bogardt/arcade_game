@@ -295,35 +295,3 @@ void			mSFML::fillCircle(const unsigned int x,
   circle.setFillColor(sf::Color(rgb[0], rgb[1], rgb[2], 255));
   this->_window.draw(circle);
 }
-
-bool			mSFML::magnetTile(const unsigned int mouseX,
-						 const unsigned int mouseY,
-						 const unsigned int x,
-						 const unsigned int y,
-						 const unsigned int intensityX,
-						 const unsigned int intensityY) const
-{
-  for (unsigned int i = 0; i < intensityX; i++)
-    for (unsigned int j = 0; j < intensityY; j++)
-      if ((mouseX + i == x && mouseY + i == y) ||
-	  (mouseX + i == x && mouseY + j == y) ||
-	  (mouseX + j == x && mouseY + j == y) ||
-	  (mouseX + j == x && mouseY + i == y) ||
-
-	  (mouseX + i == x && mouseY - i == y) ||
-	  (mouseX + i == x && mouseY - j == y) ||
-	  (mouseX + j == x && mouseY - j == y) ||
-	  (mouseX + j == x && mouseY - i == y) ||
-
-	  (mouseX - i == x && mouseY + i == y) ||
-	  (mouseX - i == x && mouseY + j == y) ||
-	  (mouseX - j == x && mouseY + j == y) ||
-	  (mouseX - j == x && mouseY + i == y) ||
-
-	  (mouseX - i == x && mouseY - i == y) ||
-	  (mouseX - i == x && mouseY - j == y) ||
-	  (mouseX - j == x && mouseY - j == y) ||
-	  (mouseX - j == x && mouseY - i == y))
-	return (true);
-  return (false);
-}
