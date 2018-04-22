@@ -32,43 +32,33 @@ mSFML::mSFML(const std::string &windowName, const int winX, const int winY, cons
 	this->_window.setFramerateLimit(60);
 	if (fontPath != "")
 		this->loadFont(fontPath);
-
-	std::cout << "[Window::Window] "
-		<< windowName << " "
-		<< winX << "x"
-		<< winY
-		<< std::endl;
+	std::cout << "[Window::Window] " << windowName << " " << winX << "x" << winY << std::endl;
 }
 
 mSFML::~mSFML() {}
 
-/*
-** Window
-*/
-void			mSFML::update(void)
+void				mSFML::update(void)
 {
+	fillRec(0, 0, DEFAULT_WINDOW_X, DEFAULT_WINDOW_Y);
 	_frameTime = _frameClock.restart();
 }
 
-bool			mSFML::isAlive(void)
+bool				mSFML::isAlive(void)
 {
 	return (_window.isOpen());
 }
 
-void			mSFML::display(void)
+void				mSFML::display(void)
 {
 	_window.display();
 }
 
-void			mSFML::clear(void)
+void				mSFML::clear(void)
 {
 	_window.clear(sf::Color::Blue);
 }
 
-/*
-** Keyboard Event
-*/
-void			mSFML::handleEvents(void)
+void				mSFML::handleEvents(void)
 {
 	sf::Event		event;
 
@@ -103,14 +93,11 @@ void			mSFML::handleEvents(void)
 	}
 }
 
-IGui::Key		mSFML::getKey(void) const
+IGui::Key			mSFML::getKey(void) const
 {
 	return (this->_current_key);
 }
 
-/*
-** Mouse Events
-*/
 unsigned int		mSFML::getMouseX(void) const
 {
 	return (this->_mouse.getPosition(this->_window).x);
@@ -131,18 +118,12 @@ bool				mSFML::buttonRightIsClicked(void) const
 	return (this->_mouse.isButtonPressed(sf::Mouse::Button::Right));
 }
 
-/*
-** Font
-*/
 void				mSFML::loadFont(const std::string &path)
 {
 	this->_font.loadFromFile(path);
 }
 
-void				mSFML::writeAt(const std::string &msg,
-	const float x, const float y,
-	const unsigned int hexaColorCode,
-	const float scale)
+void				mSFML::writeAt(const std::string &msg, const float x, const float y, const unsigned int hexaColorCode, const float scale)
 {
 	std::vector<unsigned int> rgb = hexaToRgb(hexaColorCode);
 	sf::Text text;
@@ -154,10 +135,6 @@ void				mSFML::writeAt(const std::string &msg,
 	text.setPosition(x, y);
 	this->_window.draw(text);
 }
-
-/*
-** Animated Sprite
-*/
 
 Animation			mSFML::loadAnimation(const std::string &path)
 {
@@ -202,12 +179,9 @@ void				mSFML::moveAnimatedSprite(AnimatedSprite &animatedSprite, const float x,
 	animatedSprite.move(x * _frameTime.asSeconds(), y * _frameTime.asSeconds());
 }
 
-/*
-** textures
-*/
 void				mSFML::setTextureAt(const std::string &path, const float x, const float y, const float scale)
 {
-	sf::Sprite		sprite;
+	sf::Sprite			sprite;
 	const sf::Texture	*texture;
 
 	if ((texture = _manager.load(path)) == NULL)
@@ -220,7 +194,7 @@ void				mSFML::setTextureAt(const std::string &path, const float x, const float 
 
 void				mSFML::setTextureRecAt(const std::string &path, const float x, const float y, const float h1, const float w1, const float h2, const float w2, const float scale)
 {
-	sf::Sprite		sprite;
+	sf::Sprite			sprite;
 	const sf::Texture	*texture;
 
 	if (!(texture = _manager.load(path)))
@@ -232,13 +206,10 @@ void				mSFML::setTextureRecAt(const std::string &path, const float x, const flo
 	this->_window.draw(sprite);
 }
 
-/*
-** Fill Rectangle
-*/
 void				mSFML::fillRec(const unsigned int x, const unsigned int y, const unsigned int i, const unsigned int j, const unsigned int hexaColorCode, const unsigned int alpha)
 {
-	std::vector<unsigned int> rgb = hexaToRgb(hexaColorCode);
-	sf::RectangleShape rectangle;
+	std::vector<unsigned int>	rgb = hexaToRgb(hexaColorCode);
+	sf::RectangleShape			rectangle;
 
 	rectangle.setPosition(sf::Vector2f(x, y));
 	rectangle.setSize(sf::Vector2f(i, j));
@@ -248,8 +219,8 @@ void				mSFML::fillRec(const unsigned int x, const unsigned int y, const unsigne
 
 void				mSFML::fillCircle(const unsigned int x, const unsigned int y, const unsigned int i, const unsigned int j, const unsigned int hexaColorCode)
 {
-	std::vector<unsigned int> rgb = hexaToRgb(hexaColorCode);
-	sf::CircleShape circle;
+	std::vector<unsigned int>	rgb = hexaToRgb(hexaColorCode);
+	sf::CircleShape				circle;
 
 	circle.setPosition(x, y);
 	circle.setScale(sf::Vector2f(i, j));

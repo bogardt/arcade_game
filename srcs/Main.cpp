@@ -8,6 +8,7 @@ int main(int ac, char **av)
 	{
 		gui->clear();
 		gui->handleEvents();
+		gui->update();
 		gui->display();
 	}
 	return 0;
