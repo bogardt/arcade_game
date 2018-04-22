@@ -2,20 +2,20 @@
 // mSFML
 //
 
-#ifndef		__MSFML__HPP__
-# define	__MSFML__HPP__
+#ifndef						__MSFML__HPP__
+# define					__MSFML__HPP__
 
-# include	<SFML/Window.hpp>
-# include	<SFML/Graphics.hpp>
-# include	<SFML/Graphics/Font.hpp>
+# include					<SFML/Window.hpp>
+# include					<SFML/Graphics.hpp>
+# include					<SFML/Graphics/Font.hpp>
 
-# include	"IGui.hpp"
-# include	"TextureManager.hpp"
+# include					"IGui.hpp"
+# include					"TextureManager.hpp"
 
-#define		DEBUG			(1)
-#define		RETURN_SUCESS		(0)
+#define						DEBUG			(1)
+#define						RETURN_SUCESS	(0)
 
-class		mSFML : public IGui
+class						mSFML : public IGui
 {
 
 public:
@@ -41,14 +41,14 @@ public:
 	*/
 	virtual unsigned int	getMouseX(void) const;
 	virtual unsigned int	getMouseY(void) const;
-	virtual bool	        buttonLeftIsClicked(void) const;
-	virtual bool	        buttonRightIsClicked(void) const;
+	virtual bool			buttonLeftIsClicked(void) const;
+	virtual bool			buttonRightIsClicked(void) const;
 
 	/*
 	** Font methods
 	*/
 	virtual void			loadFont(const std::string &path);
-	virtual void	        writeAt(const std::string  &msg, const float x, const float y, const unsigned int hexaColorCode = 0x000000, const float scale = 1.);
+	virtual void			writeAt(const std::string  &msg, const float x, const float y, const unsigned int hexaColorCode = 0x000000, const float scale = 1.);
 
 	/*
 	** Animated Sprites
@@ -63,10 +63,10 @@ public:
 	/*
 	** Texture methods
 	*/
-	virtual void	        setTextureAt(const std::string &path, const float x, const float y, const float scale = 1.);
-	virtual void	        setTextureRecAt(const std::string &path, const float x, const float y, const float h1, const float w1, const float h2, const float w2, const float scale = 1.);
-	virtual void	        fillRec(const unsigned int x, const unsigned int y, const unsigned int i, const unsigned int j, const unsigned int hexaColorCode = 0x000000, const unsigned int alpha = 255);
-	virtual void	        fillCircle(const unsigned int x, const unsigned int y, const unsigned int i, const unsigned int j, const unsigned int hexaColorCode = 0x000000);
+	virtual void			setTextureAt(const std::string &path, const float x, const float y, const float scale = 1.);
+	virtual void			setTextureRecAt(const std::string &path, const float x, const float y, const float h1, const float w1, const float h2, const float w2, const float scale = 1.);
+	virtual void			fillRec(const unsigned int x, const unsigned int y, const unsigned int i, const unsigned int j, const unsigned int hexaColorCode = 0x000000, const unsigned int alpha = 255);
+	virtual void			fillCircle(const unsigned int x, const unsigned int y, const unsigned int i, const unsigned int j, const unsigned int hexaColorCode = 0x000000);
 
 private:
 	sf::RenderWindow		_window;
@@ -84,4 +84,4 @@ private:
 
 };
 
-#endif		/* __MSFML__HPP__ */
+#endif						/* __MSFML__HPP__ */
